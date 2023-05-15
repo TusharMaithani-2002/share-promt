@@ -12,11 +12,11 @@ const handler = NextAuth({
     ],
     callbacks: {
         async session({session}) {
-            // console.log(session)
+            
             const sessionUser = await User.findOne({
                 email: session.user.email
             })
-        //    console.log(sessionUser.schema)
+        
             session.user.id = sessionUser._id.toString();
     
             // to know which user is currenlty online

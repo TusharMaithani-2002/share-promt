@@ -36,7 +36,7 @@ const Nav = () => {
         </p>
       </Link>
       {/* Desktop navigation */}
-      {/* {alert(session)} */}
+      
       <div className='sm:flex hidden'>
           {
             
