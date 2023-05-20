@@ -15,7 +15,7 @@ const Form = ({
 
       <form 
       onSubmit={handleSubmit}
-      classname='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
+      className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
       >
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
