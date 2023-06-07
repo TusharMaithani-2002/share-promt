@@ -1,23 +1,24 @@
 import "@styles/globals.css";
-import { Children } from "react";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
-export const metadat = {
+export const metadata = {
   title: "Promtopia",
   description: "Discover and Share AI promts",
 };
+import { Session } from "next-auth";
 
 const RootLayout = ({ children }) => {
   return (
-    <html lang="eng">
+    <html lang="en">
       <body>
-        <Provider>
+      <Provider session={Session}>
           <div className="main">
             <div className="gradient" />
           </div>
 
           <main className="app">
+  
             <Nav />
             {children}
           </main>
