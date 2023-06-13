@@ -1,4 +1,5 @@
 'use client';
+
 import {useState,useEffect} from 'react';
 import PromtCard from './PromtCard';
 
@@ -21,10 +22,28 @@ const PromptCardList = ({data,handleTagClick}) => {
 const Feed = () => {
   const [searchText, setsearchText] = useState('');
   const [posts, setPosts] = useState([]);
+  const [allPosts,setAllPosts] = useState([]);
 
+  console.log(posts[0])
   function handleSearchChange(e) {
-
+    setsearchText(e.target.value);
+    console.log(searchText)
+    
+   
+    
   }
+
+  useEffect(()=>{
+    if(searchText.length) {
+      const filtered = posts.filter(item=>{
+        return item.tag.toLowerCase().includes(searchText) || item.prompt.toLowerCase().includes(searchText) || item.creator.username.toLowerCase().includes(searchText)
+      })
+
+      console.log(filtered)
+
+      setPosts(filtered);
+    } else setPosts(allPosts)
+  },[searchText])
 
   useEffect(()=> {
     const fetchPost = async() => {
@@ -32,22 +51,22 @@ const Feed = () => {
         const response = await fetch('/api/prompt');
         const data =  await response.json();
         setPosts(data);
+        setAllPosts(data);
       } catch (error) {
         console.log(error)
       }
 
     }
-
     fetchPost();
   },[]);
   return (
     <section className='feed'>
       <form className='relative w-full flex-center'>
         <input type="text" placeholder='search a tag or username'
-        value={searchText}
+        // value={searchText}
         onChange={handleSearchChange}
         required
-        className='search_input peer'
+        className='search_input'
         />
       </form>
 

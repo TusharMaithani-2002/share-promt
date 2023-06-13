@@ -7,6 +7,7 @@ import { usePathname,useRouter } from "next/navigation";
 const PromtCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
   const [copied, setCopied] = useState("");
   const {data : session} = useSession();
+  const router = useRouter();
 
   const pathName = usePathname();
 
@@ -20,7 +21,6 @@ const PromtCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
       <div className='flex justify-between items-start gap-5'>
         <div
           className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
-          onClick={()=>{}}
         >
           <Image
             src={post.creator.image}
@@ -31,7 +31,9 @@ const PromtCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
           />
 
           <div className='flex flex-col'>
-            <h3 className='font-satoshi font-semibold text-gray-900'>
+            <h3 className='font-satoshi font-semibold text-gray-900'
+            onClick={()=>router.push(`/profile/${post.creator._id}`)}
+            >
               {post.creator.username}
             </h3>
             <p className='font-inter text-sm text-gray-500'>
