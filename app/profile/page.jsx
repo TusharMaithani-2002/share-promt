@@ -27,7 +27,7 @@ const MyProfile = () => {
 
         if(hasConfirmed){
           try{
-            const response = await fetch(`/update-prompt?id=${post._id}`,{
+            const response = await fetch(`/api/prompt/id=${post._id}`,{
               method:"DELETE",
             });
             console.log(response.ok)

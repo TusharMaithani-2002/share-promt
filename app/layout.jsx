@@ -6,19 +6,19 @@ export const metadata = {
   title: "Promtopia",
   description: "Discover and Share AI promts",
 };
-import { Session } from "next-auth";
 
-const RootLayout = ({ children }) => {
+
+const RootLayout = ({ children,session }) => {
   return (
     <html lang="en">
       <body>
-      <Provider session={Session}>
+      <Provider session={session}>
           <div className="main">
             <div className="gradient" />
           </div>
 
           <main className="app">
-  
+
             <Nav />
             {children}
           </main>
