@@ -3,7 +3,7 @@
 import { useState,useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Profile from '@components/Profile'
+import Profile from '@components/Profile';
 
 const MyProfile = () => {
 
@@ -15,7 +15,6 @@ const MyProfile = () => {
       const fetchPost = async() => {
         const response = await fetch(`/api/users/${session?.user.id}/posts`);
         const data = await response.json();
-        console.log(data)
         setPosts(data);
       }
       if(session?.user.id) fetchPost()

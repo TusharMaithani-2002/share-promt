@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname,useRouter } from "next/navigation";
 
+
 const PromtCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
   const [copied, setCopied] = useState("");
   const {data : session} = useSession();
@@ -32,7 +33,9 @@ const PromtCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
 
           <div className='flex flex-col'>
             <h3 className='font-satoshi font-semibold text-gray-900'
-            onClick={()=>router.push(`/profile/${post.creator._id}`)}
+            onClick={()=>router.push(
+              `/profile/${post.creator._id}`
+          )}
             >
               {post.creator.username}
             </h3>

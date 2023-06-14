@@ -3,40 +3,23 @@
 import {useState,useEffect} from 'react';
 import PromtCard from './PromtCard';
 
-const PromptCardList = ({data,handleTagClick}) => {
-  return (
-    <div className='mt-16 prompt_layout'>
-    {
-      data.map((post) => (
-        <PromtCard 
-        key={post._id}
-        post={post}
-        handleTagClick={handleTagClick}
-        />
-      ))
-    }
-    </div>
-  )
-}
 
 const Feed = () => {
   const [searchText, setsearchText] = useState('');
   const [posts, setPosts] = useState([]);
   const [allPosts,setAllPosts] = useState([]);
 
-  console.log(posts[0])
   function handleSearchChange(e) {
     setsearchText(e.target.value);
-    console.log(searchText)
-    
-   
-    
+    console.log(searchText);
   }
 
   useEffect(()=>{
     if(searchText.length) {
       const filtered = posts.filter(item=>{
-        return item.tag.toLowerCase().includes(searchText) || item.prompt.toLowerCase().includes(searchText) || item.creator.username.toLowerCase().includes(searchText)
+        return item.tag.toLowerCase().includes(searchText.toLowerCase()) 
+        || item.prompt.toLowerCase().includes(searchText.toLowerCase()) 
+        || item.creator.username.toLowerCase().includes(searchText.toLowerCase())
       })
 
       console.log(filtered)
@@ -63,17 +46,24 @@ const Feed = () => {
     <section className='feed'>
       <form className='relative w-full flex-center'>
         <input type="text" placeholder='search a tag or username'
-        // value={searchText}
         onChange={handleSearchChange}
         required
         className='search_input'
+        value={searchText}
         />
       </form>
 
-      <PromptCardList 
-      data={posts}
-      handleTagClick={()=>{}}
-      />
+      <div className='mt-16 prompt_layout'>
+    {
+      posts.map((post) => (
+        <PromtCard 
+        key={post._id}
+        post={post}
+        handleTagClick={()=>setsearchText(post.tag)}
+        />
+      ))
+    }
+    </div>
     </section>
   )
 }

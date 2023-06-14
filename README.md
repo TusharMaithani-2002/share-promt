@@ -4,4 +4,5 @@
  - Search by username
 
 [] Implement Click on tag
+
 [] Implement View other profiles
